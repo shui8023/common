@@ -10,9 +10,35 @@
 
 namespace Common {
 
+struct ThreadData {
+    ThreadData(ThreadFunc fun, void *data):
+        _func(fun),
+        _data(data) {
+    
+    }
+    void *Start(void *) {
+        return _func(_data);
+    }
+    ~ThreadData() {
+    
+    }
+    ThreadFunc _func;
+    void *_data;
+};
+
 Thread::Thread(const ThreadFunc func, void *data)
     :_started(false), _joined(false), _pid(0), _func(func), _data(data) {
 
+}
+
+Thread::Thread() {
+    _started = false;
+    _joined = false;
+    _pid = 0;
+}
+void Thread::Add(const ThreadFunc fun, void *data) {
+    _func = fun;
+    _data = data;
 }
 
 Thread::~Thread() {
@@ -21,11 +47,17 @@ Thread::~Thread() {
     }
 }
 
+void *thread_func(void *arg) {
+    ThreadData *data = (ThreadData *)(arg);
+    data->Start(data->_data);
+    delete data;
+}
+
 int Thread::Start() {
     assert(!_started); 
     int result;
-
-    result = pthread_create(&_pid, NULL, _func, _data);
+    ThreadData *threaddata = new ThreadData(_func, _data);
+    result = pthread_create(&_pid, NULL, thread_func, (void *)threaddata);
     if (result != 0) {
         _started = false;
     }

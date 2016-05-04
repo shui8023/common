@@ -13,12 +13,17 @@
 #include <string>
 #include <assert.h>
 #include <iostream>
+#include <boost/function.hpp>
 
 namespace Common {
+    
+typedef void *(*ThreadFunc)(void *);
+
 class Thread {
 public:
-    typedef void *(*ThreadFunc)(void *);
-    Thread(const ThreadFunc , void *data);
+    Thread(const ThreadFunc , void *data = NULL);
+    Thread();
+    void Add(const ThreadFunc fun, void *data);
     ~Thread();
     int Start();
     int Join();

@@ -6,6 +6,6 @@
 #     shuidu(942838030@qq.com)  2016年04月20日  11:21
 
 
-sed -i 's/test.c/'"$1"'/' Makefile
+sed -i 's/aaaaaa/'"$1"'/' Makefile
 make
-sed -i 's/'"$1"'/test.c/' Makefile
+sed -i 's/'"$1"'/aaaaaa/' Makefile

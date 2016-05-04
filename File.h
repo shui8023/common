@@ -18,9 +18,7 @@ namespace Common {
 class File {
 public:
     explicit File(std::string filename);
-    File();
     ~File();
-    void SetFileName();
     std::string GetFileName() const;
     void Append(const char *logline, const size_t len);
     void Flush();

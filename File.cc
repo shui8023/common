@@ -24,14 +24,6 @@ File::~File() {
     fclose(_fd);
 }
 
-File::File() {
-        
-}
-
-void File::SetFileName(const std::string &file_name) {
-    _file_name = file_name;
-}
-
 std::string File::GetFileName() const {
     return _file_name;    
 }

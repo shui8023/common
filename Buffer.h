@@ -72,6 +72,10 @@ public:
         }
     }
 
+    void Add(size_t len) {
+        _cur += len;       
+    }
+
     std::string ToString() const {
         return std::string(_buffer, GetLength());   
     }
