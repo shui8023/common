@@ -24,7 +24,8 @@ const int LargeSize = 4000;
 
 class AsyncLogging {
 public:
-    AsyncLogging(const std::string &file_name, size_t rollsize = 1024*1024*1024, int flush = 3);
+    AsyncLogging();
+    void Init(const std::string &file_name, size_t rollsize = 1024*1024*1024, int flush = 3);
     ~AsyncLogging();
     void Append(const char *buffer, size_t len);
     void Start();

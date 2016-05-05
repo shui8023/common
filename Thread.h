@@ -13,7 +13,6 @@
 #include <string>
 #include <assert.h>
 #include <iostream>
-#include <boost/function.hpp>
 
 namespace Common {
     

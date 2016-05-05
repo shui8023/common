@@ -12,11 +12,14 @@
 
 #include <functional>
 #include <iostream>
-#include <boost/bind.hpp>
 
 namespace Common {
 
-AsyncLogging::AsyncLogging(const std::string &file_name, 
+AsyncLogging::AsyncLogging() {
+
+}
+
+void AsyncLogging::Init(const std::string &file_name, 
         size_t rollsize, 
         int flush) {
     _thread.Add(
